@@ -27,11 +27,17 @@ const initialState = {
     offlineTowers: 1,
     maintenanceTowers: 1,
     totalPlants: 108,
-    waterUsageToday: 124, // liters
-    electricityToday: 8.4, // kWh
-    dailyYield: 1.8, // kg
-    monthlyYield: 48.6, // kg
+    waterUsageToday: 124,
+    electricityToday: 8.4,
+    dailyYield: 1.8,
+    monthlyYield: 48.6,
   },
+  yieldData: Array.from({ length: 30 }, (_, i) => ({
+    day: `May ${i + 1}`,
+    yield:   +(1.2 + Math.random() * 1.8).toFixed(2),
+    water:   +(100 + Math.random() * 60).toFixed(0),
+    revenue: +(180 + Math.random() * 140).toFixed(0),
+  })),
   harvestLogs: [
     { id: 'H001', tower: 'T001', crop: 'Basil',   weight: 2.8, date: '2026-04-30', notes: 'Excellent yield, very aromatic' },
     { id: 'H002', tower: 'T002', crop: 'Lettuce', weight: 3.5, date: '2026-04-28', notes: 'Good quality, slight tip burn' },
