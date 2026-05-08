@@ -8,7 +8,7 @@ import { hashPassword, getRateLimit, recordFailedAttempt, clearRateLimit, secure
 import toast from 'react-hot-toast'
 
 // ── Admin: email + pre-computed SHA-256 of password ─────────
-const ADMIN_EMAIL    = 'narendra1.galsana@gmail.com'
+const ADMIN_EMAIL    = 'narendra.galsana@gmail.com'
 const ADMIN_HASH     = '8915928308b3859dd9ba0a3aea8cd5d144090435c1ff146f5f772df2494a078f'
 const ADMIN_NAME     = 'Narendra Galsana'
 

@@ -5,7 +5,7 @@ import { Leaf, User, Mail, Lock, ArrowRight, Building, Eye, EyeOff, ShieldCheck 
 import { hashPassword, checkPasswordStrength, secureRead, secureStore } from '../../utils/security'
 import toast from 'react-hot-toast'
 
-const ADMIN_EMAIL = 'narendra1.galsana@gmail.com'
+const ADMIN_EMAIL = 'narendra.galsana@gmail.com'
 
 export default function RegisterPage() {
   const [form, setForm]       = useState({ name: '', email: '', farmName: '', password: '', confirm: '' })
