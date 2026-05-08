@@ -55,8 +55,25 @@ const farmSlice = createSlice({
       const tower = state.towers.find(t => t.id === id)
       if (tower) tower.status = status
     },
+    addTower: (state, action) => {
+      state.towers.push(action.payload)
+      state.stats.totalTowers = state.towers.length
+      state.stats.activeTowers = state.towers.filter(t => t.status === 'active').length
+    },
+    updateTower: (state, action) => {
+      const idx = state.towers.findIndex(t => t.id === action.payload.id)
+      if (idx !== -1) {
+        state.towers[idx] = { ...state.towers[idx], ...action.payload }
+      }
+      state.stats.activeTowers = state.towers.filter(t => t.status === 'active').length
+    },
+    deleteTower: (state, action) => {
+      state.towers = state.towers.filter(t => t.id !== action.payload)
+      state.stats.totalTowers = state.towers.length
+      state.stats.activeTowers = state.towers.filter(t => t.status === 'active').length
+    },
   },
 })
 
-export const { toggleAutomation, updateTowerStatus } = farmSlice.actions
+export const { toggleAutomation, updateTowerStatus, addTower, updateTower, deleteTower } = farmSlice.actions
 export default farmSlice.reducer
