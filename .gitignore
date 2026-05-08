@@ -1,0 +1,28 @@
+# Root .gitignore
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/settings.json
+.idea/
+*.iml
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.production
+
+# Backend
+backend/target/
+backend/.mvn/
+*.class
+*.jar
+*.war
+
+# Secrets
+*.env
+*.env.local
