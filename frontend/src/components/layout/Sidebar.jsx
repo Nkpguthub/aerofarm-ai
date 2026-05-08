@@ -5,7 +5,8 @@ import { useTranslation } from 'react-i18next'
 import {
   LayoutDashboard, Activity, Zap, Building2, Leaf, BarChart3,
   Sparkles, Bell, Settings, LogOut, ChevronLeft, ChevronRight,
-  Shield, ShoppingBag, FileText, Users, Package, BarChart2, DollarSign
+  Shield, ShoppingBag, FileText, Users, Package, BarChart2, DollarSign,
+  Wheat, FlaskConical
 } from 'lucide-react'
 import { toggleSidebar, closeMobileSidebar } from '../../store/slices/uiSlice'
 import { logout } from '../../store/slices/authSlice'
@@ -16,6 +17,8 @@ const farmerLinks = [
   { to: '/dashboard/automation', icon: Zap, label: 'automation' },
   { to: '/dashboard/towers', icon: Building2, label: 'towers' },
   { to: '/dashboard/plants', icon: Leaf, label: 'plants' },
+  { to: '/dashboard/harvest', icon: Wheat, label: 'Harvest Log' },
+  { to: '/dashboard/nutrients', icon: FlaskConical, label: 'Nutrients' },
   { to: '/dashboard/yield', icon: BarChart3, label: 'yield' },
   { to: '/dashboard/ai', icon: Sparkles, label: 'ai' },
   { to: '/dashboard/notifications', icon: Bell, label: 'notifications' },

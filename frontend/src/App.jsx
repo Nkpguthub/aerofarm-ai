@@ -22,6 +22,8 @@ import PlantMonitoring from './pages/FarmerDashboard/PlantMonitoring'
 import YieldAnalytics from './pages/FarmerDashboard/YieldAnalytics'
 import AIRecommendations from './pages/FarmerDashboard/AIRecommendations'
 import NotificationsPage from './pages/FarmerDashboard/NotificationsPage'
+import HarvestLog from './pages/FarmerDashboard/HarvestLog'
+import NutrientSchedule from './pages/FarmerDashboard/NutrientSchedule'
 
 // Admin Pages
 import AdminOverview from './pages/AdminDashboard/AdminOverview'
@@ -70,6 +72,8 @@ export default function App() {
         <Route path="yield" element={<YieldAnalytics />} />
         <Route path="ai" element={<AIRecommendations />} />
         <Route path="notifications" element={<NotificationsPage />} />
+        <Route path="harvest" element={<HarvestLog />} />
+        <Route path="nutrients" element={<NutrientSchedule />} />
       </Route>
 
       {/* Admin Dashboard */}

@@ -32,12 +32,17 @@ const initialState = {
     dailyYield: 1.8, // kg
     monthlyYield: 48.6, // kg
   },
-  yieldData: Array.from({ length: 30 }, (_, i) => ({
-    day: `May ${i + 1}`,
-    yield: +(1.2 + Math.random() * 1.8).toFixed(2),
-    water: +(100 + Math.random() * 60).toFixed(0),
-    revenue: +(180 + Math.random() * 140).toFixed(0),
-  })),
+  harvestLogs: [
+    { id: 'H001', tower: 'T001', crop: 'Basil',   weight: 2.8, date: '2026-04-30', notes: 'Excellent yield, very aromatic' },
+    { id: 'H002', tower: 'T002', crop: 'Lettuce', weight: 3.5, date: '2026-04-28', notes: 'Good quality, slight tip burn' },
+    { id: 'H003', tower: 'T002', crop: 'Spinach', weight: 2.1, date: '2026-04-20', notes: 'Healthy crop' },
+    { id: 'H004', tower: 'T001', crop: 'Basil',   weight: 2.6, date: '2026-04-10', notes: 'Slightly early harvest due to crowding' },
+  ],
+  nutrientSchedules: [
+    { id: 'N001', tower: 'T001', name: 'Vegetative Mix',  nitrogen: 150, phosphorus: 50,  potassium: 200, calcium: 120, frequency: 'Every 6h', active: true  },
+    { id: 'N002', tower: 'T002', name: 'Flowering Boost', nitrogen: 100, phosphorus: 120, potassium: 250, calcium: 100, frequency: 'Every 8h', active: true  },
+    { id: 'N003', tower: 'T003', name: 'Maintenance Mix', nitrogen: 80,  phosphorus: 40,  potassium: 160, calcium: 90,  frequency: 'Every 12h', active: false },
+  ],
 }
 
 const farmSlice = createSlice({
@@ -46,9 +51,7 @@ const farmSlice = createSlice({
   reducers: {
     toggleAutomation: (state, action) => {
       const key = action.payload
-      if (key in state.automation) {
-        state.automation[key] = !state.automation[key]
-      }
+      if (key in state.automation) state.automation[key] = !state.automation[key]
     },
     updateTowerStatus: (state, action) => {
       const { id, status } = action.payload
@@ -62,9 +65,7 @@ const farmSlice = createSlice({
     },
     updateTower: (state, action) => {
       const idx = state.towers.findIndex(t => t.id === action.payload.id)
-      if (idx !== -1) {
-        state.towers[idx] = { ...state.towers[idx], ...action.payload }
-      }
+      if (idx !== -1) state.towers[idx] = { ...state.towers[idx], ...action.payload }
       state.stats.activeTowers = state.towers.filter(t => t.status === 'active').length
     },
     deleteTower: (state, action) => {
@@ -72,8 +73,28 @@ const farmSlice = createSlice({
       state.stats.totalTowers = state.towers.length
       state.stats.activeTowers = state.towers.filter(t => t.status === 'active').length
     },
+    addPlant: (state, action) => { state.plants.push(action.payload) },
+    updatePlant: (state, action) => {
+      const idx = state.plants.findIndex(p => p.id === action.payload.id)
+      if (idx !== -1) state.plants[idx] = { ...state.plants[idx], ...action.payload }
+    },
+    deletePlant: (state, action) => { state.plants = state.plants.filter(p => p.id !== action.payload) },
+    addHarvestLog: (state, action) => { state.harvestLogs.unshift(action.payload) },
+    deleteHarvestLog: (state, action) => { state.harvestLogs = state.harvestLogs.filter(h => h.id !== action.payload) },
+    addNutrientSchedule: (state, action) => { state.nutrientSchedules.push(action.payload) },
+    updateNutrientSchedule: (state, action) => {
+      const idx = state.nutrientSchedules.findIndex(n => n.id === action.payload.id)
+      if (idx !== -1) state.nutrientSchedules[idx] = { ...state.nutrientSchedules[idx], ...action.payload }
+    },
+    deleteNutrientSchedule: (state, action) => { state.nutrientSchedules = state.nutrientSchedules.filter(n => n.id !== action.payload) },
   },
 })
 
-export const { toggleAutomation, updateTowerStatus, addTower, updateTower, deleteTower } = farmSlice.actions
+export const {
+  toggleAutomation, updateTowerStatus,
+  addTower, updateTower, deleteTower,
+  addPlant, updatePlant, deletePlant,
+  addHarvestLog, deleteHarvestLog,
+  addNutrientSchedule, updateNutrientSchedule, deleteNutrientSchedule,
+} = farmSlice.actions
 export default farmSlice.reducer
