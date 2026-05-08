@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 import {
   LayoutDashboard, Activity, Zap, Building2, Leaf, BarChart3,
   Sparkles, Bell, Settings, LogOut, ChevronLeft, ChevronRight,
-  Shield, ShoppingBag, FileText, Users, Package
+  Shield, ShoppingBag, FileText, Users, Package, BarChart2, DollarSign
 } from 'lucide-react'
 import { toggleSidebar, closeMobileSidebar } from '../../store/slices/uiSlice'
 import { logout } from '../../store/slices/authSlice'
@@ -27,6 +27,9 @@ const adminLinks = [
   { to: '/admin/towers', icon: Building2, label: 'towers' },
   { to: '/admin/products', icon: Package, label: 'Products' },
   { to: '/admin/orders', icon: ShoppingBag, label: 'Orders' },
+  { to: '/admin/analytics', icon: BarChart2, label: 'Analytics' },
+  { to: '/admin/revenue', icon: DollarSign, label: 'Revenue' },
+  { to: '/admin/reports', icon: FileText, label: 'Reports' },
   { to: '/admin/blogs', icon: FileText, label: 'Blogs' },
   { to: '/admin/settings', icon: Settings, label: 'settings' },
 ]

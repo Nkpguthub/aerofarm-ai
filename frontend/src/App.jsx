@@ -31,6 +31,9 @@ import ProductManagement from './pages/AdminDashboard/ProductManagement'
 import OrderManagement from './pages/AdminDashboard/OrderManagement'
 import BlogManagement from './pages/AdminDashboard/BlogManagement'
 import SystemSettings from './pages/AdminDashboard/SystemSettings'
+import AnalyticsDashboard from './pages/AdminDashboard/AnalyticsDashboard'
+import ReportsPage from './pages/AdminDashboard/ReportsPage'
+import RevenueAnalytics from './pages/AdminDashboard/RevenueAnalytics'
 
 function ProtectedRoute({ children, requiredRole }) {
   const { isAuthenticated, user } = useSelector(s => s.auth)
@@ -82,6 +85,9 @@ export default function App() {
         <Route path="orders" element={<OrderManagement />} />
         <Route path="blogs" element={<BlogManagement />} />
         <Route path="settings" element={<SystemSettings />} />
+        <Route path="analytics" element={<AnalyticsDashboard />} />
+        <Route path="reports" element={<ReportsPage />} />
+        <Route path="revenue" element={<RevenueAnalytics />} />
       </Route>
 
       <Route path="*" element={<Navigate to="/" replace />} />
