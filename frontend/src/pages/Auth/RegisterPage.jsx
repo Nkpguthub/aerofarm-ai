@@ -54,6 +54,7 @@ export default function RegisterPage() {
       farmName:     form.farmName.trim(),
       passwordHash,
       role:         'FARMER',
+      joinedDate:   new Date().toISOString().slice(0, 10),
       createdAt:    new Date().toISOString(),
     }
     secureStore('farmers', [...existing, newFarmer])

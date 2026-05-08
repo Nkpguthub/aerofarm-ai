@@ -1,16 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  user: {
-    id: 1,
-    name: 'Mehul Patel',
-    email: 'mehul@aerofarm.io',
-    role: 'FARMER', // 'FARMER' | 'ADMIN'
-    avatar: null,
-    farmName: 'Green Valley Aeroponics',
-  },
-  token: 'mock-jwt-token',
-  isAuthenticated: true,
+  user: null,
+  token: null,
+  isAuthenticated: false,
   loading: false,
   error: null,
 }
