@@ -24,7 +24,7 @@ public class User {
     @Column(nullable = false)
     private Role role;
 
-    @Column(name = "is_active")
+    @Builder.Default @Column(name = "is_active")
     private boolean active = true;
 
     @Column(name = "created_at")

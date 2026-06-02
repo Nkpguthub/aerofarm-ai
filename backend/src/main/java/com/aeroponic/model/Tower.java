@@ -12,7 +12,7 @@ public class Tower {
     private String name;
     private String location;
     @Enumerated(EnumType.STRING) private Status status;
-    @Column(name = "total_slots") private int totalSlots = 48;
+    @Builder.Default @Column(name = "total_slots") private int totalSlots = 48;
     @Column(name = "created_at") private LocalDateTime createdAt;
     @PrePersist protected void onCreate() { createdAt = LocalDateTime.now(); }
     public enum Status { active, offline, maintenance }

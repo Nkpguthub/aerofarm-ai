@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -31,7 +32,7 @@ public class AuthController {
             new UsernamePasswordAuthenticationToken(req.get("email"), req.get("password"))
         );
         UserDetails userDetails = userDetailsService.loadUserByUsername(req.get("email"));
-        User user = userRepository.findByEmail(req.get("email")).orElseThrow();
+        User user = Objects.requireNonNull(userRepository.findByEmail(req.get("email")).orElseThrow());
         String accessToken = jwtService.generateAccessToken(userDetails);
         String refreshToken = jwtService.generateRefreshToken(userDetails);
         return ResponseEntity.ok(Map.of(
