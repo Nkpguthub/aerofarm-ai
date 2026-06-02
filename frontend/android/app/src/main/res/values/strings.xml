@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">AeroFarm AI</string>
+    <string name="title_activity_main">AeroFarm AI</string>
+    <string name="package_name">io.aerofarm.app</string>
+    <string name="custom_url_scheme">io.aerofarm.app</string>
+</resources>
