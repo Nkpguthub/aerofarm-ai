@@ -40,7 +40,7 @@ jobs:
 
       - name: Sync Capacitor
         run: |
-          npx cap sync android --verbose > sync.log 2>&1 || (cat sync.log && exit 1)
+          npx cap sync android > sync.log 2>&1 || (cat sync.log && exit 1)
         working-directory: frontend
 
       - name: Upload Sync Log
