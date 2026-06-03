@@ -85,6 +85,21 @@ jobs:
             echo "✅ APK built successfully! Size: $SIZE"
           fi
 
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ github.run_number }}
+          name: AeroFarm AI Build v${{ github.run_number }}
+          body: |
+            This is the automatically built Android APK for AeroFarm AI (Build v${{ github.run_number }}).
+            
+            No GitHub login is required to download this asset.
+          files: frontend/android/app/build/outputs/apk/debug/app-debug.apk
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Push debug logs to branch
         if: failure()
         run: |
