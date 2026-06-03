@@ -50,17 +50,6 @@ jobs:
           name: capacitor-sync-log
           path: frontend/sync.log
 
-      - name: Push debug logs to branch
-        if: failure()
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-          git checkout -b debug-logs || git checkout debug-logs
-          cp frontend/sync.log sync.log || true
-          git add sync.log || true
-          git commit -m "debug: sync failure logs [skip ci]" || true
-          git push origin debug-logs --force
-
       - name: Make Gradle executable
         run: chmod +x frontend/android/gradlew
 
@@ -75,7 +64,8 @@ jobs:
             ${{ runner.os }}-gradle-
 
       - name: Build Debug APK
-        run: ./gradlew assembleDebug --no-daemon
+        run: |
+          ./gradlew assembleDebug --no-daemon > gradle.log 2>&1 || (cat gradle.log && exit 1)
         working-directory: frontend/android
         env:
           ANDROID_HOME: ${{ env.ANDROID_SDK_ROOT }}
@@ -94,3 +84,15 @@ jobs:
             SIZE=$(du -h "$APK_PATH" | cut -f1)
             echo "✅ APK built successfully! Size: $SIZE"
           fi
+
+      - name: Push debug logs to branch
+        if: failure()
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git checkout -b debug-logs || git checkout debug-logs
+          cp frontend/sync.log sync.log || true
+          cp frontend/android/gradle.log gradle.log || true
+          git add sync.log gradle.log || true
+          git commit -m "debug: build/sync failure logs [skip ci]" || true
+          git push origin debug-logs --force
