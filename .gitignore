@@ -21,6 +21,7 @@ backend/target/
 backend/.mvn/
 *.class
 *.jar
+!**/gradle-wrapper.jar
 *.war
 
 # Secrets
