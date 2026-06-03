@@ -27,9 +27,6 @@ const farmerLinks = [
 const adminLinks = [
   { to: '/admin', icon: LayoutDashboard, label: 'dashboard', end: true },
   { to: '/admin/farmers', icon: Users, label: 'Farmers' },
-  { to: '/admin/towers', icon: Building2, label: 'towers' },
-  { to: '/admin/products', icon: Package, label: 'Products' },
-  { to: '/admin/orders', icon: ShoppingBag, label: 'Orders' },
   { to: '/admin/analytics', icon: BarChart2, label: 'Analytics' },
   { to: '/admin/revenue', icon: DollarSign, label: 'Revenue' },
   { to: '/admin/reports', icon: FileText, label: 'Reports' },

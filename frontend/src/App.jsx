@@ -28,9 +28,6 @@ import NutrientSchedule from './pages/FarmerDashboard/NutrientSchedule'
 // Admin Pages
 import AdminOverview from './pages/AdminDashboard/AdminOverview'
 import FarmerManagement from './pages/AdminDashboard/FarmerManagement'
-import AdminTowers from './pages/AdminDashboard/AdminTowers'
-import ProductManagement from './pages/AdminDashboard/ProductManagement'
-import OrderManagement from './pages/AdminDashboard/OrderManagement'
 import BlogManagement from './pages/AdminDashboard/BlogManagement'
 import SystemSettings from './pages/AdminDashboard/SystemSettings'
 import AnalyticsDashboard from './pages/AdminDashboard/AnalyticsDashboard'
@@ -84,9 +81,6 @@ export default function App() {
       }>
         <Route index element={<AdminOverview />} />
         <Route path="farmers" element={<FarmerManagement />} />
-        <Route path="towers" element={<AdminTowers />} />
-        <Route path="products" element={<ProductManagement />} />
-        <Route path="orders" element={<OrderManagement />} />
         <Route path="blogs" element={<BlogManagement />} />
         <Route path="settings" element={<SystemSettings />} />
         <Route path="analytics" element={<AnalyticsDashboard />} />

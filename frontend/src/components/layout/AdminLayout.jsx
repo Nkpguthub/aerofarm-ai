@@ -6,9 +6,6 @@ import Navbar from './Navbar'
 const adminTitles = {
   '/admin': 'Admin Overview',
   '/admin/farmers': 'Farmer Management',
-  '/admin/towers': 'Tower Fleet',
-  '/admin/products': 'Product Management',
-  '/admin/orders': 'Order Management',
   '/admin/blogs': 'Blog Management',
   '/admin/settings': 'System Settings',
 }

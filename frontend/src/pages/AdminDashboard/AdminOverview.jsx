@@ -18,9 +18,7 @@ const pieData = [
 export default function AdminOverview() {
   const cards = [
     { label: 'Total Farmers', value: 526, icon: Users, color: '#22c55e', trend: 15 },
-    { label: 'Active Towers', value: 1843, icon: Building2, color: '#06b6d4', trend: 8 },
     { label: 'Monthly Revenue', value: 248600, icon: DollarSign, unit: '₹', color: '#8b5cf6', trend: 22 },
-    { label: 'Total Orders', value: 3241, icon: ShoppingBag, color: '#f59e0b', trend: 11 },
     { label: 'Avg Farm Yield', value: 48.6, icon: TrendingUp, unit: 'kg', color: '#10b981', trend: 18 },
     { label: 'System Uptime', value: 99.9, icon: Activity, unit: '%', color: '#22c55e', trend: 0 },
   ]
