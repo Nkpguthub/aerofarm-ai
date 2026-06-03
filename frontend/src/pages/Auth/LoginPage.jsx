@@ -119,48 +119,7 @@ export default function LoginPage() {
           <h2 style={{ fontSize: 24, fontWeight: 800, color: 'var(--text-primary)', marginBottom: 6 }}>Welcome back</h2>
           <p style={{ fontSize: 14, color: 'var(--text-muted)', marginBottom: 20 }}>Sign in to your farming dashboard</p>
 
-          {/* ── Quick Fill (Mobile Friendly) ── */}
-          <div style={{ marginBottom: 24 }}>
-            <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: 8 }}>
-              🔑 Quick Sign In
-            </div>
-            <div style={{ display: 'flex', gap: 8 }}>
-              {/* Admin quick fill */}
-              <button type="button"
-                onClick={() => { setEmail(ADMIN_EMAIL); setPassword('Narendra@2501'); setError('') }}
-                style={{
-                  flex: 1, padding: '10px 12px', borderRadius: 10, cursor: 'pointer', textAlign: 'left',
-                  background: 'linear-gradient(135deg, rgba(6,182,212,0.1), rgba(6,182,212,0.05))',
-                  border: '1px solid rgba(6,182,212,0.3)', transition: 'all 0.2s',
-                }}
-                onMouseEnter={e => e.currentTarget.style.borderColor = '#06b6d4'}
-                onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(6,182,212,0.3)'}
-              >
-                <div style={{ fontSize: 13, fontWeight: 700, color: '#06b6d4' }}>🛡️ Admin</div>
-                <div style={{ fontSize: 10, color: 'var(--text-muted)', marginTop: 2 }}>Narendra Galsana</div>
-              </button>
 
-              {/* Farmer hint */}
-              <button type="button"
-                onClick={() => { setEmail(''); setPassword(''); setError(''); toast('Enter your registered farmer email & password 🌱', { icon: '📋' }) }}
-                style={{
-                  flex: 1, padding: '10px 12px', borderRadius: 10, cursor: 'pointer', textAlign: 'left',
-                  background: 'linear-gradient(135deg, rgba(34,197,94,0.1), rgba(34,197,94,0.05))',
-                  border: '1px solid rgba(34,197,94,0.3)', transition: 'all 0.2s',
-                }}
-                onMouseEnter={e => e.currentTarget.style.borderColor = '#22c55e'}
-                onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(34,197,94,0.3)'}
-              >
-                <div style={{ fontSize: 13, fontWeight: 700, color: '#22c55e' }}>🌱 Farmer</div>
-                <div style={{ fontSize: 10, color: 'var(--text-muted)', marginTop: 2 }}>Use registered email</div>
-              </button>
-            </div>
-            <div style={{ fontSize: 10, color: 'var(--text-muted)', textAlign: 'center', marginTop: 6 }}>
-              Tap a card to auto-fill credentials
-            </div>
-          </div>
-
-          <div style={{ height: 1, background: 'var(--border-subtle)', marginBottom: 20 }} />
 
           {/* Lockout banner */}
           {lockInfo.locked ? (
