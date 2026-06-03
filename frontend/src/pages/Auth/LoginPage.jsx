@@ -37,17 +37,19 @@ export default function LoginPage() {
     e.preventDefault()
     setError('')
 
+    const normalizedEmail = email.trim().toLowerCase()
+
     // Check rate limit before doing anything
-    const rl = getRateLimit(email)
+    const rl = getRateLimit(normalizedEmail)
     if (rl.locked) { setLockInfo(rl); return }
 
     setLoading(true)
     const inputHash = await hashPassword(password)
 
     // ── Admin check ───────────────────────────────
-    if (email === ADMIN_EMAIL) {
+    if (normalizedEmail === ADMIN_EMAIL) {
       if (inputHash === ADMIN_HASH) {
-        clearRateLimit(email)
+        clearRateLimit(normalizedEmail)
         dispatch(loginSuccess({
           user: { id: 0, name: ADMIN_NAME, email: ADMIN_EMAIL, role: 'ADMIN', farmName: 'AeroFarm HQ' },
           token: 'jwt-admin-' + Date.now(),
@@ -59,8 +61,8 @@ export default function LoginPage() {
         return
       }
       // Wrong admin password
-      const result = recordFailedAttempt(email)
-      if (result.lockedUntil > Date.now()) setLockInfo(getRateLimit(email))
+      const result = recordFailedAttempt(normalizedEmail)
+      if (result.lockedUntil > Date.now()) setLockInfo(getRateLimit(normalizedEmail))
       else setError(`Incorrect password. ${5 - result.attempts} attempt(s) remaining.`)
       setLoading(false)
       return
@@ -68,9 +70,9 @@ export default function LoginPage() {
 
     // ── Farmer check (encrypted localStorage) ────
     const farmers = secureRead('farmers') || []
-    const farmer  = farmers.find(f => f.email === email && f.passwordHash === inputHash)
+    const farmer  = farmers.find(f => f.email === normalizedEmail && f.passwordHash === inputHash)
     if (farmer) {
-      clearRateLimit(email)
+      clearRateLimit(normalizedEmail)
       dispatch(loginSuccess({
         user: { id: farmer.id, name: farmer.name, email: farmer.email, role: 'FARMER', farmName: farmer.farmName },
         token: 'jwt-farmer-' + farmer.id,
@@ -83,9 +85,9 @@ export default function LoginPage() {
     }
 
     // ── No match ──────────────────────────────────
-    const result = recordFailedAttempt(email)
+    const result = recordFailedAttempt(normalizedEmail)
     if (result.lockedUntil > Date.now()) {
-      setLockInfo(getRateLimit(email))
+      setLockInfo(getRateLimit(normalizedEmail))
       setError('')
     } else {
       const remaining = Math.max(0, 5 - (result.attempts % 5))
